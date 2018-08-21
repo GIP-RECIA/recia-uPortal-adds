@@ -1,5 +1,6 @@
 /**
  * Copyright © 2018 GIP-RECIA (https://www.recia.fr/)
+ * Copyright © 2018 Esup Portail https://www.esup-portail.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
