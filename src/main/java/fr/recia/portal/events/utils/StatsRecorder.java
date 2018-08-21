@@ -59,8 +59,8 @@ public class StatsRecorder implements Serializable {
 	/**
 	 * Record stats for a fname.
 	 *
-	 * @param fname
-	 * @param eventTimestamp
+	 * @param fname The fname
+	 * @param eventTimestamp The event timestamp
 	 */
 	public synchronized void recordRenderedEvent(final String fname, final long eventTimestamp) {
 		this.lastRenderingTimestamp = eventTimestamp;
@@ -88,8 +88,8 @@ public class StatsRecorder implements Serializable {
 	/**
 	 * Test if the fname was already recently rendered by a previous event.
 	 *
-	 * @param fname
-	 * @param event
+	 * @param fname The fname
+	 * @param eventTimestamp The event timestamp
 	 * @return true if recently rendered
 	 */
 	protected boolean wasRecentlyRendered(final String fname, final long eventTimestamp) {

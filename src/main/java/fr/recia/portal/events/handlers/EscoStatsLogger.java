@@ -145,7 +145,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Process an event which was already filtered as an esco stats event.
 	 *
-	 * @param event
+	 * @param event The event to process
 	 * @return true if the event was processed.
 	 */
 	protected boolean processEscoStatEvent(final ApplicationEvent event) {
@@ -185,7 +185,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Process a LoginEvent : log a stats line.
 	 *
-	 * @param event
+	 * @param event The event to process
 	 * @return true if the event was logged
 	 */
 	protected boolean processLoginEvent(final LoginEvent event) {
@@ -211,7 +211,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Process a LogoutEvent : log a stats line.
 	 *
-	 * @param event
+	 * @param event The event to process
 	 * @return true if the event was logged
 	 */
 	protected boolean processLogoutEvent(final LogoutEvent event) {
@@ -232,7 +232,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	 * Process a PortalRenderEvent : log a stats line OR
 	 * record a stat line in a NodeStatsRecorder if this.printOnLogout is true.
 	 *
-	 * @param event
+	 * @param event The event to process
 	 * @return true if the event was logged or recorded
 	 */
 	protected boolean processPortalRenderEvent(final PortalRenderEvent event) {
@@ -266,8 +266,8 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	 * Process a PortletRenderExecutionEvent : log a stats line OR
 	 * record a stat line in a NodeStatsRecorder if this.printOnLogout is true.
 	 *
-	 * @param event
-	 * @return
+	 * @param event The event to process
+	 * @return true if the event was correctly processed
 	 */
 	protected boolean processPortletRenderExecutionEvent(final PortletRenderExecutionEvent event) {
 		EscoStatsLogger.LOG.debug("Processing PortletRenderExecutionEvent...");
@@ -285,9 +285,9 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	 * Process any render event : may filter the fname and the update the corresponding
 	 * NodeStatsRecorder or log the event immediatly.
 	 *
-	 * @param person
-	 * @param fname
-	 * @param event
+	 * @param person The user details
+	 * @param fname The fname to log.
+	 * @param event The event processed
 	 * @return true if the event was correctly processed
 	 */
 	protected boolean processRenderEvent(final IPerson person, final String fname, final ApplicationEvent event) {
@@ -315,7 +315,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	 * Process a HttpSessionCreatedEvent : log a stats line
 	 * and init some stats recording feature for the session life.
 	 *
-	 * @param event
+	 * @param event The event to process
 	 * @return true if the event was logged
 	 */
 	protected boolean processHttpSessionCreatedEvent(final LoginEvent event) {
@@ -339,7 +339,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	 * Process a HttpSessionDestroyedEvent : log a stats line
 	 * and may log the node rendered stats if this.printOnLogout is true.
 	 *
-	 * @param event
+	 * @param event The event to process
 	 * @return true if the event was logged
 	 */
 	protected boolean processHttpSessionDestroyedEvent(final HttpSessionDestroyedEvent event) {
@@ -371,7 +371,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Log all NSR recorded in the IPerson object.
 	 *
-	 * @param person
+	 * @param person The user details
 	 */
 	protected void logRenderEventsRecorded(final IPerson person) {
 		final int serial = this.retrieveSerial(person);
@@ -390,9 +390,9 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Update the NodeStatsRecorder stored in the IPerson object.
 	 *
-	 * @param person
+	 * @param person The user details
 	 * @param fname
-	 * @param event
+	 * @param event The event to process
 	 */
 	protected void updateNodeStatsRecorder(final IPerson person, final String fname, final ApplicationEvent event) {
 		// The rendered node is the same than the last rendered node
@@ -403,8 +403,8 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Retrieve the Stats recorder from IPerson object.
 	 *
-	 * @param person
-	 * @return
+	 * @param person The user details
+	 * @return The StatsRecorder depending on the User.
 	 */
 	protected StatsRecorder retrieveStatsRecorder(final IPerson person) {
 		StatsRecorder sr = (StatsRecorder) person.getAttribute(EscoStatsLogger.PERSON_ATTR_KEY_NODESTATS);
@@ -421,7 +421,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	 * Retrieve the Layout Node fname if one can be found.
 	 *
 	 * @param nodeDescription
-	 * @return
+	 * @return The fname from the node Description.
 	 */
 	protected String retrieveLayoutNodeFname(final IUserLayoutNodeDescription nodeDescription) {
 		final String fname;
@@ -443,7 +443,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Retourne le type d'utilisateur.
 	 *
-	 * @param person Les informations de l'utilisateur
+	 * @param person The user details
 	 * @return type Le type d'utilisateur
 	 */
 	protected String getTypePerson(IPerson person) {
@@ -482,7 +482,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Gen a serial number and place it in the IPerson attributes.
 	 *
-	 * @param person
+	 * @param person The user details
 	 * @return the generated serial
 	 */
 	protected int retrieveSerial(IPerson person) {
@@ -492,7 +492,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Gen a serial number and place it in the IPerson attributes.
 	 *
-	 * @param person
+	 * @param person The user details
 	 * @return the generated serial
 	 */
 	protected int genSerial(IPerson person) {
@@ -509,7 +509,7 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	/**
 	 * Test if the person must be ignored.
 	 *
-	 * @param person
+	 * @param person The user details
 	 * @return true if it must be ignored
 	 */
 	protected boolean isPersonToIgnored(final IPerson person) {

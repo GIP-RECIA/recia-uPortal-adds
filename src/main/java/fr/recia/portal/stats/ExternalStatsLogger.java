@@ -27,7 +27,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ExternalStatsLogger {
 
-	/** Process external stats. */
+	/** Process external stats.
+	 * @param fname The fname
+	 * @param request The request
+	 * @param service The service
+	 */
 	void processExternalURLCall(HttpServletRequest request, String fname, String service);
 
 }

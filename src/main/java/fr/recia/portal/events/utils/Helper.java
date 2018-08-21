@@ -39,7 +39,7 @@ public abstract class Helper {
 	/**
 	 * Retrieve the IPerson object from the session.
 	 *
-	 * @param session
+	 * @param session The user session
 	 * @return the IPerson object
 	 */
 	public static IPerson retrievePerson(final HttpSession session){
@@ -55,7 +55,7 @@ public abstract class Helper {
 	/**
 	 * Retrieve the HttpRequest in the current request context.
 	 *
-	 * @return
+	 * @return the HttpRequest.
 	 */
 	public static HttpServletRequest retrieveHttpRequest() {
 		final RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
