@@ -5,7 +5,7 @@
   <groupId>fr.recia.portal</groupId>
   <artifactId>recia-uPortal-adds</artifactId>
   <packaging>jar</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
 
   <inceptionYear>2018</inceptionYear>
 
@@ -33,7 +33,7 @@
     <connection>scm:git:ssh://git@github.com/GIP-RECIA/recia-uPortal-adds.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/GIP-RECIA/recia-uPortal-adds.git</developerConnection>
     <url>https://github.com/GIP-RECIA/recia-uPortal-adds.git</url>
-    <tag>HEAD</tag>
+    <tag>1.1</tag>
   </scm>
 
   <properties>
