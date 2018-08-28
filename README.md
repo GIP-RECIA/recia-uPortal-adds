@@ -5,3 +5,4 @@ Complementary classes for uPortal 5.2.x - this add class to use as beans into uP
 - Servlet to be able to update user properties
 - Servlet monitoring of current sessions, jvm stats
 - Servlet and tools (event listener) for the StatsRecorder
+- bean for jsp invoker, to be able to process user attributes, mainly for xiti init.
