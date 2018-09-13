@@ -18,7 +18,6 @@ package fr.recia.portal.spring.web.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,18 +26,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-import org.springframework.web.HttpRequestHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * This servlet record access to external link.
- *
- * @author Raymond Bourges
- * @author GIP RECIA 2013.
- *
  */
-public class  ExternalUrlStatsRecorderServlet implements HttpRequestHandler, InitializingBean {
+@Controller
+public class ExternalUrlStatsRecorderServlet implements InitializingBean {
 
 	/** Logger .*/
 	private static final Logger LOG = LoggerFactory.getLogger(ExternalUrlStatsRecorderServlet.class);
@@ -49,31 +47,30 @@ public class  ExternalUrlStatsRecorderServlet implements HttpRequestHandler, Ini
 	@Autowired(required = true)
 	private ExternalStatsLogger externalStatsLogger;
 
-	@Override
-	public void handleRequest(final HttpServletRequest request, final HttpServletResponse response)
-			throws ServletException, IOException {
+	@RequestMapping(value="/ExternalURLStats", method = RequestMethod.GET)
+	public void handleRequest(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		LOG.debug("External URL Stat called...");
 
-	final String fname = request.getParameter(FNAME_HTTP_PARAM);
-	final String service = request.getParameter(SERVICE_HTTP_PARAM);
+		final String fname = request.getParameter(FNAME_HTTP_PARAM);
+		final String service = request.getParameter(SERVICE_HTTP_PARAM);
 
-        if(LOG.isDebugEnabled()){
-            LOG.debug("fname: [{}]", fname);
-            LOG.debug("service: [{}]", service);
-        }
+		if(LOG.isDebugEnabled()){
+			LOG.debug("fname: [{}]", fname);
+			LOG.debug("service: [{}]", service);
+		}
 
-        // scan parameters
-        if(!StringUtils.hasText(fname) || !StringUtils.hasText(service)) {
-            LOG.error("Bad parameters ! fname: [{}], service: [{}]", fname, service);
-            return;
-        }
+		// scan parameters
+		if(!StringUtils.hasText(fname) || !StringUtils.hasText(service)) {
+			LOG.error("Bad parameters ! fname: [{}], service: [{}]", fname, service);
+			return;
+		}
 
-        this.externalStatsLogger.processExternalURLCall(request, fname, service);
+		this.externalStatsLogger.processExternalURLCall(request, fname, service);
 
-        response.sendRedirect(service);
+		response.sendRedirect(service);
 
-        LOG.debug("External URL Stat processing ended.");
-    }
+		LOG.debug("External URL Stat processing ended.");
+	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
