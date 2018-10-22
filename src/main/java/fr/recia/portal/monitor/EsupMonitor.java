@@ -75,10 +75,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apereo.portal.security.PersonFactory;
 import org.apereo.portal.spring.security.PortalPersonUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -89,12 +91,10 @@ public class EsupMonitor {
 	private static int maxDumpUser = 100;
 	private static String lsofCmd = "";
 
-	private static String guestUsername = "guest";
-
 	@Autowired
 	protected SessionRegistry sessionRegistry;
 
-	@RequestMapping
+	@GetMapping
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
@@ -183,7 +183,7 @@ public class EsupMonitor {
 		int totalCount = 0;
 		while (i.hasNext()) {
 			worker = (String) i.next();
-			if (worker.equals(guestUsername)) {
+			if (PersonFactory.getGuestUsernames().contains(worker)) {
 				guestCount += Integer.parseInt(p.getProperty(worker));
 			} else {
 				sessionCount += Integer.parseInt(p.getProperty(worker));
