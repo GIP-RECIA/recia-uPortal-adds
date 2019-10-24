@@ -48,7 +48,7 @@
     <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
     <surefire-report-plugin.version>2.0-beta-1</surefire-report-plugin.version>
     <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
-    <findbugs-maven-plugin.version>2.3.1</findbugs-maven-plugin.version>
+    <findbugs-maven-plugin.version>2.5.5</findbugs-maven-plugin.version>
     <uportal-maven-plugin.version>1.0.1</uportal-maven-plugin.version>
   </properties>
 
