@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apereo.portal.security.IPerson;
 import org.apereo.portal.security.IPersonManager;
 import org.apereo.services.persondir.IPersonAttributeDao;
+import org.apereo.services.persondir.IPersonAttributeDaoFilter;
 import org.apereo.services.persondir.IPersonAttributes;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -190,7 +191,7 @@ public class ExternalUpdatePersonPropertyServlet implements InitializingBean {
                     } else {
                         IPersonAttributes personAttributes =
                                 notNull(
-                                        notNull(personAttributeDao, "personAttributeDao Null").getPerson(person.getName()),
+                                        notNull(personAttributeDao, "personAttributeDao Null").getPerson(person.getName(), IPersonAttributeDaoFilter.alwaysChoose()),
                                         "personAttributes null");
 
                         internValue = (String) personAttributes.getAttributeValue(attributName);
