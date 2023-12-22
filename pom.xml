@@ -42,7 +42,7 @@
     <project.build.target>1.8</project.build.target>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
 
-    <uportal.version>5.8.2</uportal.version>
+    <uportal.version>5.16.1</uportal.version>
 
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
