@@ -29,6 +29,13 @@
     </snapshotRepository>
   </distributionManagement>
 
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
   <scm>
     <connection>scm:git:ssh://git@github.com/GIP-RECIA/recia-uPortal-adds.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/GIP-RECIA/recia-uPortal-adds.git</developerConnection>
