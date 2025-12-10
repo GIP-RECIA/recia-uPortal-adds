@@ -190,7 +190,7 @@ public class ExternalUpdatePersonPropertyServlet implements InitializingBean {
                     } else {
                         IPersonAttributes personAttributes =
                                 notNull(
-                                        notNull(personAttributeDao, "personAttributeDao Null").getPerson(person.getName()),
+                                        notNull(personAttributeDao, "personAttributeDao Null").getPerson(person.getName(), null),
                                         "personAttributes null");
 
                         internValue = (String) personAttributes.getAttributeValue(attributName);
