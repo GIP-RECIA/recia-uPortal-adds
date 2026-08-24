@@ -20,6 +20,7 @@
 package fr.recia.portal.stats;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Set;
 
 /**
  * @author GIP RECIA 2013
@@ -33,5 +34,7 @@ public interface ExternalStatsLogger {
 	 * @param service The service
 	 */
 	void processExternalURLCall(HttpServletRequest request, String fname, String service);
+
+	Set<String> getAllowedUrls();
 
 }

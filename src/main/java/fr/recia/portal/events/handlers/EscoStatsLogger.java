@@ -17,11 +17,13 @@
 package fr.recia.portal.events.handlers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -105,6 +107,8 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 	private long recentPeriod = 60000L;
 
 	private Pattern fnamePattern = Pattern.compile(".+\\/p\\/([^.\\/]+).*");
+
+	private Set<String> allowedUrls;
 
 	@Autowired
 	private IPersonManager personManager;
@@ -586,6 +590,18 @@ public class EscoStatsLogger extends FilteringApplicationListener<ApplicationEve
 
 	public void setPersonManager(IPersonManager personManager) {
 		this.personManager = personManager;
+	}
+
+	@Override
+	public Set<String> getAllowedUrls(){
+		return allowedUrls;
+	}
+
+	public void setAllowedUrls(final String allowedUrls) {
+		this.allowedUrls = Arrays.stream(allowedUrls.split(","))
+				.map(String::trim)
+				.filter(StringUtils::hasText)
+				.collect(Collectors.toSet());
 	}
 
 }

@@ -59,6 +59,12 @@ public class ExternalUrlStatsRecorderServlet implements InitializingBean {
 			LOG.debug("service: [{}]", service);
 		}
 
+		if (!externalStatsLogger.getAllowedUrls().contains(service)) {
+			LOG.warn("Service not allowed: [{}]", service);
+			response.sendError(HttpServletResponse.SC_FORBIDDEN);
+			return;
+		}
+
 		// scan parameters
 		if(!StringUtils.hasText(fname) || !StringUtils.hasText(service)) {
 			LOG.error("Bad parameters ! fname: [{}], service: [{}]", fname, service);
