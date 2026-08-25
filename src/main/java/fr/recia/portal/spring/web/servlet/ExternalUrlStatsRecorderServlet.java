@@ -59,7 +59,7 @@ public class ExternalUrlStatsRecorderServlet implements InitializingBean {
 			LOG.debug("service: [{}]", service);
 		}
 
-		if (!externalStatsLogger.getAllowedUrls().contains(service)) {
+		if (externalStatsLogger.getAllowedUrls().stream().noneMatch(regex -> service.matches(regex))) {
 			LOG.warn("Service not allowed: [{}]", service);
 			response.sendError(HttpServletResponse.SC_FORBIDDEN);
 			return;
